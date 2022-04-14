@@ -92,5 +92,4 @@ public class Number {
     private int getRandomNumber(){
         return pickNumberInRange(START_NUM, END_NUM);
     }
-
 }
