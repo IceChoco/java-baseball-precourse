@@ -3,17 +3,20 @@ package baseball;
 public class GameSystem {
     private int[] computer;
     private int[] player;
+    private boolean quit = false;
 
     public GameSystem() {
     }
 
     public void gameStart(){
         Number computerNum = new Number();
-        computerNum.setRandomNumber();
-        computer = computerNum.getNum();
+        Number userNum = new Number();
 
-        for(int n:computer){
-            System.out.print(n+" ");
+        computerNum.setRandomNumber();
+        while(!quit){
+            userNum.reqUserInput();
+            quit = true;
         }
     }
+
 }

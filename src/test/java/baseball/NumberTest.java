@@ -1,41 +1,75 @@
 package baseball;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import java.util.Arrays;
+
+import static org.assertj.core.api.Assertions.*;
 
 public class NumberTest {
-    private static final int START_NUM = 1;
-    private static final int END_NUM = 9;
-    private static final int MAX_SIZE = 3;
+    private static Number number;
+
+    @BeforeEach
+    @DisplayName("Number 객체 생성")
+    void beforeTest(){
+        number = new Number();
+    }
 
     @Test
     @DisplayName("랜덤 생성 숫자 검증")
     void verifiying_random_generated_number(){
-        Number computerNum = new Number();
-        computerNum.setRandomNumber();
-        int[] computer = computerNum.getNum();
-
-        chkLength(computer);
-        chkRange(computer);
-        chkUnique(computer);
+        number.setRandomNumber();
+        assertThat(chkValid()).isTrue();
     }
 
-    @DisplayName("MAX_SIZE자리 자연수인지 확인")
-    void chkLength(int[] computer){
-        assertThat(computer).hasSize(MAX_SIZE);
+    boolean chkValid(){
+        String numStr = Arrays.toString(number.getNum()).replaceAll("[^0-9]","");
+        System.out.println(numStr);
+        return number.callValidUserInput(numStr);
     }
 
-    @DisplayName("START_NUM부터 END_NUM까지의 숫자인지 확인")
-    void chkRange(int[] computer){
-        for(int c:computer){
-            assertThat(c).isBetween(START_NUM,END_NUM);
-        }
+    @Test
+    @DisplayName("정상 입력 케이스")
+    void normalInput(){
+        number.setUserInput("123");
+        assertThat(chkValid()).isTrue();
     }
 
-    @DisplayName("각 숫자가 unique한지 확인")
-    void chkUnique(int[] computer){
-        assertThat(computer).doesNotHaveDuplicates();
+    @Test
+    @DisplayName("자릿수를 오버해서 입력한 경우")
+    void longInput(){
+        number.setUserInput("123456");
+        assertThatIllegalArgumentException().isThrownBy(this::chkValid);
     }
+
+    @Test
+    @DisplayName("자릿수를 짧게 입력한 경우")
+    void shortInput(){
+        number.setUserInput("12");
+        assertThatIllegalArgumentException().isThrownBy(this::chkValid);
+    }
+
+    @Test
+    @DisplayName("1부터 9까지의 숫자가 아닌 경우")
+    void wrongRangeInput(){
+        number.setUserInput("120");
+        assertThatIllegalArgumentException().isThrownBy(this::chkValid);
+    }
+
+    @Test
+    @DisplayName("각 자리 숫자가 유니크하지 않은 경우")
+    void notUniqueInput(){
+        number.setUserInput("999");
+        assertThatIllegalArgumentException().isThrownBy(this::chkValid);
+    }
+
+    @Test
+    @DisplayName("각 자리 숫자가 유니크하지 않은 경우2")
+    void notUniqueInput2(){
+        number.setUserInput("991");
+        assertThatIllegalArgumentException().isThrownBy(this::chkValid);
+    }
+
 }
