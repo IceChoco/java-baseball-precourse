@@ -43,7 +43,7 @@ public class Result {
         if(chkIsNothing(ball, strike)) return false;
 
         String result = makeSentence(ball, strike);
-        System.out.print(result);
+        System.out.println(result);
         return false;
     }
 

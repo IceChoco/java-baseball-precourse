@@ -23,7 +23,7 @@ public class ResultTest {
         Result result = new Result();
         result.chkAnswer(computer,player);
 
-        String expected = "1볼 1스트라이크";
+        String expected = "1볼 1스트라이크\n";
         assertThat(expected).isEqualTo(out.toString().replace("\r", ""));
     }
 }
