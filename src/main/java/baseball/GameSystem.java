@@ -2,7 +2,6 @@ package baseball;
 
 public class GameSystem {
     private int[] computer;
-    private boolean quit = false;
 
     public GameSystem() {
     }
@@ -22,6 +21,7 @@ public class GameSystem {
     }
 
     public void gameInProgress(Number userNum){
+        boolean quit = false;
         Result result = new Result();
         while(!quit){
             userNum.reqUserInput();

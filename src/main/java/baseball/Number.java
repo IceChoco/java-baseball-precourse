@@ -4,13 +4,9 @@ import java.util.HashSet;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
 import static camp.nextstep.edu.missionutils.Randoms.pickNumberInRange;
+import static constant.Constant.*;
 
 public class Number {
-    private static final int START_NUM = 1;
-    private static final int END_NUM = 9;
-    private static final int MAX_SIZE = 3;
-    private static final String NUM_RANGE = "^[1-9]*$";
-
     private int[] num;
 
     public Number() {
@@ -21,10 +17,9 @@ public class Number {
     }
 
     public void reqUserInput(){
-        System.out.print("숫자를 입력해주세요: ");
-        String userInput = readLine();
+        System.out.print(MSG_ENTER_NUMBER);
+        String userInput = readLine().trim();
 
-        userInput = userInput.trim();
         if(validUserInput(userInput)){
             setUserInput(userInput);
         }

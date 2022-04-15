@@ -1,5 +1,7 @@
 package baseball;
 
+import static constant.Constant.*;
+
 public class Result {
     private int[] computer;
     private Score score;
@@ -39,12 +41,14 @@ public class Result {
         int ball   = score.getBall();
         int strike = score.getStrike();
 
-        if(isPerfect(ball, strike)) return true;
         if(chkIsNothing(ball, strike)) return false;
 
-        String result = makeSentence(ball, strike);
-        System.out.println(result);
-        return false;
+        System.out.println(makeSentence(ball, strike));
+        return isPerfect(ball, strike);
+    }
+
+    private boolean isPerfect(int ball, int strike){
+        return strike == MAX_SIZE;
     }
 
     private String makeSentence(int ball, int strike){
@@ -66,19 +70,9 @@ public class Result {
         sb.append(score).append(expression);
     }
 
-    private boolean isPerfect(int ball, int strike){
-        if(strike < 3)
-            return false;
-
-        System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 종료");
-        System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요");
-
-        return true;
-    }
-
     private boolean chkIsNothing(int ball, int strike){
         if(ball == 0 && strike == 0){
-            System.out.println("낫싱");
+            System.out.println(NOTHING);
             return true;
         }
         return false;
