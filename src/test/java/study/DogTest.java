@@ -10,11 +10,15 @@ public class DogTest {
 
     @Test
     void isEqualTo(){
-        assertThat(fido).isEqualTo(fidosClone);
+        assertThat(fido).isNotEqualTo(fidosClone);
     }
 
     @Test
     void isEqualToComparingFieldByFieldRecursively(){
-        assertThat(fido).isEqualToComparingFieldByFieldRecursively(fidosClone);
+        assertThat(fido).usingRecursiveComparison()
+                        .isEqualTo(fidosClone);
+
+        //AssertJ 3.12.0 버전 이전 사용 방식
+        //.isEqualToComparingFieldByFieldRecursively(fidosClone);
     }
 }

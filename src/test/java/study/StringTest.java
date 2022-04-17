@@ -18,7 +18,7 @@ public class StringTest {
         assertThat(strArray1).contains("1","2");//순서와 상관 없이 실제 그룹이 주어진 값들을 포함하고 있는지를 테스트
 
         //"1"을 ,로 split 했을 때 "1만을" 포함하는 배열이 반환되는지 확인
-        assertThat(strArray1).containsExactly("1");//순서까지 고려해서 실제 그룹이 주어진 값들을 포함하고 있는지를 테스트
+        assertThat(strArray2).containsExactly("1");//순서까지 고려해서 실제 그룹이 주어진 값들을 포함하고 있는지를 테스트
     }
 
     @Test
