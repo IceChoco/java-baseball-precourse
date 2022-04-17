@@ -54,8 +54,8 @@ public class Result {
     private String makeSentence(int ball, int strike){
         StringBuilder sb = new StringBuilder();
 
-        append(ball, "볼", sb);
-        append(strike, "스트라이크", sb);
+        append(ball, BALL, sb);
+        append(strike, STRIKE, sb);
 
         return sb.toString();
     }
